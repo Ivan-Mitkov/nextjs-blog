@@ -1,6 +1,5 @@
-import { useRouter } from "next/router";
 import PostContent from "../../components/posts/post-detail/PostContent";
-import { getAllPosts, getPostData } from "../../lib/postsUtils";
+import { getPostData, getAllSlugs } from "../../lib/postsUtils";
 
 const PostPage = (props) => {
   return <PostContent post={props.post} />;
@@ -8,8 +7,8 @@ const PostPage = (props) => {
 
 export default PostPage;
 
-export function getStaticPaths(context) {
-  const allSlugs = getAllPosts().map((post) => post.slug);
+export function getStaticPaths() {
+  const allSlugs = getAllSlugs();
   return {
     fallback: false,
     paths: allSlugs.map((s) => ({ params: { slug: s } })),

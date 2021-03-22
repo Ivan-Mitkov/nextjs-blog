@@ -2,6 +2,8 @@ import ReactMarkdown from "react-markdown";
 import PostHeader from "./PostHeader";
 import classes from "./post-content.module.css";
 import Image from "next/image";
+import { Prism } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const PostContent = ({ post }) => {
   const imagePath = `/images/posts/${post.slug}/${post.image}`;
@@ -33,6 +35,12 @@ const PostContent = ({ post }) => {
         );
       }
       return <p>{paragraph.children}</p>;
+    },
+    code(code) {
+      const { language, value } = code;
+      return (
+        <Prism language={language} children={value} style={vscDarkPlus}></Prism>
+      );
     },
   };
   return (

@@ -1,8 +1,17 @@
-import PostContent from "../../components/posts/post-detail/PostContent";
+import Head from "next/head";
 import { getPostData, getAllSlugs } from "../../lib/postsUtils";
+import PostContent from "../../components/posts/post-detail/PostContent";
 
 const PostPage = (props) => {
-  return <PostContent post={props.post} />;
+  return (
+    <>
+    <Head>
+        <title>{props.post.title}</title>
+        <meta name='description' content={props.post.excerpt} />
+      </Head>
+      <PostContent post={props.post} />
+    </>
+  );
 };
 
 export default PostPage;
